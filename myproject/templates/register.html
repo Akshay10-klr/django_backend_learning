@@ -1,8 +1,10 @@
 <h1>user id creation</h1>
 {% for mess in messages %}
 <h5 style="color: red;">{{mess}}</h5>
-{% csrf token %}
+{% endfor %}
+
 <form action="register" method="POST">
+    {% csrf_token %}
     <p>username</p>
     <input type="text" name="username">
     <p>email</p>
