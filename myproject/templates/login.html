@@ -1,0 +1,12 @@
+{% for messages in messages %}
+<h3 style="color: red;">{{messages}}</h3>
+{% endfor %}
+<form action="login" method="POST">
+        {% csrf_token %}
+        <p>username:</p>
+        <input type="text" name="username">
+        <p>password</p>
+        <input type="password" name="password">
+        <br>
+        <input type="submit">
+</form>

@@ -11,10 +11,6 @@ def index(request):
 
 
 # Create your views here.
-def counter(request):
-    text=request.POST['text']
-    amount_0f_words=len(text.split())
-    return render(request,'cont.html',{'amount':amount_0f_words})
 def register(request):
     if request.method=="POST":
         username=request.POST['username']
@@ -41,4 +37,20 @@ def register(request):
 
 
 def login(request):
-    return HttpResponse("Login Page (Placeholder)")
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+
+        user=auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('/')
+        else:
+            messages.info(request,'invalid credentials')
+            return redirect('login')
+    else:    
+        return render(request,'login.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')

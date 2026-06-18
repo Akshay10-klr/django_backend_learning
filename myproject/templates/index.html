@@ -71,8 +71,12 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+      {% if user.is_authenticated %} 
+      <a class="btn-getstarted" href="logout">logout/signout</a>
+      {% else %}
+            <a class="btn-getstarted" href="login">login</a>
+      {% endif %}      
 
-      <a class="btn-getstarted" href="#about">Get Started</a>
 
     </div>
   </header>
@@ -87,7 +91,11 @@
       <div class="container">
         <div class="row justify-content-center" data-aos="zoom-out">
           <div class="col-xl-7 col-lg-9 text-center">
+            {% if user.is_authenticated %}
+            <h1>welcome {{ user.username}}</h1>
+            {% else %}
             <h1>One Page Bootstrap Website Template</h1>
+            {% endif %}
             <p>We are team of talented designers making websites with Bootstrap</p>
           </div>
         </div>
